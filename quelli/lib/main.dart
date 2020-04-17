@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:quelli/src/place.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: Center(child: Place()),
     );
   }
 }
