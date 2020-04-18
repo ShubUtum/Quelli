@@ -1,4 +1,8 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
+import 'package:quelli/src/common/service.dart';
 import 'package:quelli/src/list/store.dart';
 
 class StoreCard extends StatefulWidget {
@@ -9,37 +13,59 @@ class StoreCard extends StatefulWidget {
 }
 
 class _StoreInfoState extends State<StoreCard> {
-  List<Store> stores = [
-    Store(name: 'Victuals Market', location: 'Viktualienmarkt', queue: '3'),
-    Store(name:'Japanese delicatessen Mikado', location: 'BaaderstraBe', queue: '6'),
-    Store(name:'Da Hapna', location: 'FrauenstraBe', queue: '1'),
-    Store(name:'schmatz', location: 'Glockenbachviertel', queue: '0')
-  ];
+  Image image;
+  final HttpService httpService = HttpService();
+
+  List<Store> stores = new List<Store>();
+
+  _getStores() {
+    httpService.storeList().then((response) {
+      setState(() {
+        stores = response;
+      });
+    });
+  }
+
+  initState() {
+    super.initState();
+    _getStores();
+  }
 
   Widget storeTemplate(store){
     return Card(
-        margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+        margin: EdgeInsets.all(10),
+        elevation: 4,
         child: new InkWell(
           onTap: () { //To be route to queuing page
           print("tapped");
         },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Text(
-                store.name,
-                style: TextStyle(fontSize: 36, color: Colors.black54)
-            ),
-            SizedBox(height: 12),
-            Text(
-                store.location,
-                style: TextStyle(fontSize: 24, color: Colors.grey)
-            ),
-            Text(
-                store.queue,
-                style: TextStyle(fontSize: 18, color: Colors.black38)
-            ),
+        child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+        child: Row(
+        children: <Widget>[
+          CircleAvatar(
+            radius:60,
+          ),
+          SizedBox(width: 16),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(store.name, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              SizedBox(height: 4),
+              Text(store.location, style: TextStyle(color: Colors.green)),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget> [
+                  SizedBox(height: 25),
+                  Text('Queue ' + store.queue, style: TextStyle(fontSize: 16, color: Colors.black87), textAlign: TextAlign.right),
+                ],
+              )
+
+              ],
+          ),
           ],
+        ),
         )
       )
     );
@@ -47,7 +73,7 @@ class _StoreInfoState extends State<StoreCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Container(
       child:Column(
           children: stores.map((store) => storeTemplate(store)).toList(),
       ),

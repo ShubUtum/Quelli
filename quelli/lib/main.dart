@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quelli/src/list/list.dart';
+import 'package:quelli/src/list/storelist.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: List(title: 'Quelli'),
+      home: StoreList(title: 'Quelli'),
     );
   }
 }
