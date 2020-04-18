@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quelli/src/common/search.dart';
 import 'package:quelli/src/list/storecard.dart';
 
 class StoreList extends StatefulWidget{
@@ -22,6 +23,10 @@ class ListState extends State<StoreList> {
             icon: const Icon(Icons.search),
             tooltip: 'Search',
             onPressed: () {
+              showSearch(
+                context: context,
+                delegate: CustomSearchDelegate(),
+              );
             },
           ),
           IconButton(
