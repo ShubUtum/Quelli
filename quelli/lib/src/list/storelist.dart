@@ -4,6 +4,7 @@ import 'package:quelli/src/list/storecard.dart';
 
 class StoreList extends StatefulWidget{
   StoreList({Key key, this.title}) : super(key: key);
+  static String tag = 'storelist-page';
   final String title;
 
   @override
