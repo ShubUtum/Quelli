@@ -5,6 +5,8 @@ class Store {
   String queue;
 
   Store({this.logo, this.name, this.location, this.queue});
+  Store.fromSlot(this.name, this.location, this.queue);
+
 
   factory Store.fromJson(Map<String, dynamic> json) {
     return Store(

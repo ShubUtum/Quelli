@@ -112,7 +112,13 @@ class _StoreInfoState extends State<StoreCard> {
     );
   }
 
-  void addQueue(store){
-    
+  void addQueue(slot){
+    final mapper = Store.fromSlot(slot.name,slot.time,slot.queue);
+    final newStore = stores;
+    // BUG LAAA
+    newStore.insert(0, mapper);
+    setState(() {
+      stores = newStore;
+    });
   }
 }
