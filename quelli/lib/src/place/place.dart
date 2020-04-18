@@ -1,30 +1,36 @@
 import 'package:flutter/material.dart';
-import 'package:quelli/src/Timeslot.dart';
-import 'package:quelli/src/restaurantTitle.dart';
+import 'package:quelli/src/list/store.dart';
+import 'package:quelli/src/place/Timeslot.dart';
+import 'package:quelli/src/place/restaurantTitle.dart';
 
 enum ConfirmAction { ACCEPT, CANCEL }
 
 class Place extends StatefulWidget {
+  Store store;
 
+  Place(this.store);
   @override
-  PlaceState createState() => PlaceState();
+  PlaceState createState() => PlaceState(this.store);
 
 }
 
 class PlaceState extends State<Place> {
+  Store store;
+
+  PlaceState(this.store);
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
       child: Column(
         children: <Widget>[
-           RestaurantTitle(),
-           Container(
-             height: 300,
-             margin: EdgeInsets.only(top: 16, bottom: 16),
+           RestaurantTitle(this.store.name, this.store.location),
+           Expanded(
              child: TimeSlot()
            ),
            Container(
+             margin: EdgeInsets.only(top: 16.0),
              child: FloatingActionButton.extended(
                  onPressed: () async {
                    final ConfirmAction action = await _asyncConfirmDialog(context);
@@ -32,13 +38,14 @@ class PlaceState extends State<Place> {
                  label: const Text("Add your queue"),
 
              )
-           )
+           ),
+          SizedBox(height: 30)
         ],
       )
     );
 
   }
-  
+
   Future<ConfirmAction> _asyncConfirmDialog(BuildContext context) async {
     return showDialog<ConfirmAction>(
       context: context,
