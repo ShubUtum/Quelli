@@ -4,19 +4,24 @@ import 'package:quelli/src/common/service.dart';
 import 'package:quelli/src/list/store.dart';
 import 'package:quelli/src/place/place.dart';
 
-class StoreCard extends StatefulWidget {
-  const StoreCard({Key key}) : super(key: key);
+typedef void QueueCallback();
 
+class StoreCard extends StatefulWidget {
+  StoreCard(this.callback);
+  QueueCallback callback;
   @override
-  _StoreInfoState createState() => _StoreInfoState();
+  _StoreInfoState createState() => _StoreInfoState(() => this.callback());
 }
 
 class _StoreInfoState extends State<StoreCard> {
   Image image;
+  QueueCallback callback;
   final HttpService httpService = HttpService();
   final List<Widget> collections = new List<Widget>();
 
   List<Store> stores = new List<Store>();
+
+  _StoreInfoState(this.callback);
 
   _getStores() {
     httpService.storeList().then((response) {
@@ -118,6 +123,7 @@ class _StoreInfoState extends State<StoreCard> {
 
   void addQueue(slot){
     collections.insert(0, queueTemplate(slot));
+    this.callback();
     setState(() {});
   }
   

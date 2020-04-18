@@ -13,38 +13,48 @@ class StoreList extends StatefulWidget{
 }
 
 class ListState extends State<StoreList> {
+  bool haveQueue = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation:
+      FloatingActionButtonLocation.centerDocked,
+      floatingActionButton:  FloatingActionButton.extended(
+        icon: this.haveQueue? Icon(Icons.scanner): Icon(Icons.search),
+        label: Text(this.haveQueue? "Check in" : "Search places"), onPressed: () {
+          showSearch(
+            context: context,
+            delegate: CustomSearchDelegate(),
+        );
+    },
+      ),
+      bottomNavigationBar: BottomAppBar(
+        notchMargin: 2.0,
+        child: new Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            IconButton(icon: Icon(Icons.person_outline), onPressed: () {},),
+            IconButton(icon: Icon(Icons.input), onPressed: () {},),
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: Text(widget.title),
         centerTitle: true,
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.search),
-            tooltip: 'Search',
-            onPressed: () {
-              showSearch(
-                context: context,
-                delegate: CustomSearchDelegate(),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.person_outline),
-            tooltip: 'User Profile',
-            onPressed: () {
-            },
-          ),
-        ],
+
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            StoreCard()
+            StoreCard(() => this.setHaveQueue())
           ],
         ),
       ),
     );
+  }
+  void setHaveQueue(){
+    this.haveQueue = true;
+    setState(() {});
   }
 }
