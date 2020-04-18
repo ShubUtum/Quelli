@@ -22,6 +22,7 @@ class PlaceState extends State<Place> {
   Store store;
   final SlotCallback callback;
   final List<String> entries = <String>['X', 'B', 'C','D','E'];
+  List<String> timeSlot = new List<String>();
   PlaceState(this.store, this.callback);
 
   @override
@@ -40,7 +41,8 @@ class PlaceState extends State<Place> {
                  onPressed: () async {
                    final ConfirmAction action = await _asyncConfirmDialog(context);
                    if (action == ConfirmAction.ACCEPT){
-                     this.callback(Slot.create(this.store.name, null, null));
+                     this.callback(Slot.create(this.store.name, this.timeSlot[0], null));
+                     Navigator.pop(context);
                    }
                  },
                  label: const Text("Add your queue"),
@@ -55,6 +57,10 @@ class PlaceState extends State<Place> {
   }
 
   void onSelectSlot(Map<String, bool> time){
+    time.keys.forEach((key) => {
+      if (time[key])
+        this.timeSlot.add(key)
+    });
 
   }
 
@@ -68,9 +74,9 @@ class PlaceState extends State<Place> {
       barrierDismissible: false, // user must tap button for close dialog!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Reset settings?'),
+          title: Text('Comfirm your pick?'),
           content: const Text(
-              'This will reset your device to its default factory settings.'),
+              'Are you sure about your picked time?'),
           actions: <Widget>[
             FlatButton(
               child: const Text('CANCEL'),

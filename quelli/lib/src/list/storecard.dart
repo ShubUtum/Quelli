@@ -14,6 +14,7 @@ class StoreCard extends StatefulWidget {
 class _StoreInfoState extends State<StoreCard> {
   Image image;
   final HttpService httpService = HttpService();
+  final List<Widget> collections = new List<Widget>();
 
   List<Store> stores = new List<Store>();
 
@@ -96,9 +97,12 @@ class _StoreInfoState extends State<StoreCard> {
 
   @override
   Widget build(BuildContext context) {
+  
+    stores.map((store) => storeTemplate(store)).toList().forEach((widget) => collections.add(widget));
+    
     return Container(
       child:Column(
-          children: stores.map((store) => storeTemplate(store)).toList(),
+          children: collections,
       ),
     );
   }
@@ -113,12 +117,47 @@ class _StoreInfoState extends State<StoreCard> {
   }
 
   void addQueue(slot){
-    final mapper = Store.fromSlot(slot.name,slot.time,slot.queue);
-    final newStore = stores;
-    // BUG LAAA
-    newStore.insert(0, mapper);
-    setState(() {
-      stores = newStore;
-    });
+    collections.insert(0, queueTemplate(slot));
+    setState(() {});
+  }
+  
+  Widget queueTemplate(slot){
+    print(slot.time);
+    print(slot.name);
+
+    return Center( child:Card(
+        margin: EdgeInsets.all(10),
+        elevation: 4,
+        child: new InkWell(
+            onTap: () { //To be route to queuing page
+              print("tapped");
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
+              child:
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        const Text("Your queue is at"),
+                        Text(slot.time, style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, )),
+                        SizedBox(height: 4),
+                        RichText(
+                          text: TextSpan(
+                              children: [
+                                WidgetSpan(
+                                  child: Icon(Icons.location_on, size: 24, color: Colors.grey),
+                                ),
+                                TextSpan(text: slot.name, style: TextStyle(color: Colors.green, fontSize: 12))
+                              ]
+                          ),
+                        ),
+                      ]
+                  ),
+
+
+            )
+        )
+    ));
   }
 }
