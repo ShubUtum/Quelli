@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:quelli/src/common/service.dart';
 import 'package:quelli/src/list/store.dart';
-import 'package:quelli/src/place.dart';
+import 'package:quelli/src/place/place.dart';
 
 class StoreCard extends StatefulWidget {
   const StoreCard({Key key}) : super(key: key);
@@ -39,7 +39,7 @@ class _StoreInfoState extends State<StoreCard> {
           child: new InkWell(
             onTap: () { //To be route to queuing page
             print("tapped");
-            _settingModalBottomSheet(context);
+            _settingModalBottomSheet(context, store);
           },
           child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
@@ -103,11 +103,11 @@ class _StoreInfoState extends State<StoreCard> {
     );
   }
 
-  void _settingModalBottomSheet(context){
+  void _settingModalBottomSheet(context, store){
     showModalBottomSheet(
         context: context,
         builder: (BuildContext bc){
-          return Place();
+          return Place(store);
         }
     );
   }

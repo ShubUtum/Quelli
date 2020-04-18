@@ -18,8 +18,8 @@ class TimeSlot extends StatelessWidget {
       itemCount: entries.length,
       itemBuilder: (BuildContext context, int index) {
         return Container(
-          height: 60,
-          margin: EdgeInsets.only(top:16.0),
+          height: 40,
+          margin: EdgeInsets.only(top:16.0, bottom: 16.0),
           child:CheckboxListTile(
             title: const Text('Time Slot na ja'),
             value: timeDilation != 1.0,
