@@ -5,10 +5,13 @@ import 'package:quelli/src/place/restaurantTitle.dart';
 
 enum ConfirmAction { ACCEPT, CANCEL }
 
+
+typedef void StoreCallback(Store val);
+
 class Place extends StatefulWidget {
   Store store;
-
-  Place(this.store);
+  final StoreCallback callback;
+  Place(this.store, this.callback);
   @override
   PlaceState createState() => PlaceState(this.store);
 
@@ -34,6 +37,7 @@ class PlaceState extends State<Place> {
              child: FloatingActionButton.extended(
                  onPressed: () async {
                    final ConfirmAction action = await _asyncConfirmDialog(context);
+
                  },
                  label: const Text("Add your queue"),
 

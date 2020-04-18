@@ -107,8 +107,12 @@ class _StoreInfoState extends State<StoreCard> {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext bc){
-          return Place(store);
+          return Place(store, (val) => addQueue(val));
         }
     );
+  }
+
+  void addQueue(store){
+    
   }
 }
