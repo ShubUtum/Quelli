@@ -43,9 +43,10 @@ class _StoreInfoState extends State<StoreCard> {
         padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
         child: Row(
         children: <Widget>[
-          CircleAvatar(
-            radius:60,
-          ),
+          Image.network(store.logo), //must decode
+//          CircleAvatar(
+//            radius:60,
+//          ),
           SizedBox(width: 16),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
