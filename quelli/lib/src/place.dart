@@ -19,31 +19,30 @@ class PlaceState extends State<Place> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Queue up'),
-      ),
-      body: Column(
-        children: <Widget>[
-          RestaurantTitle(),
-          TimeSlot()
-        ],
-      ),
+    return Wrap(
+        children: <Widget>[Column(
+          children: <Widget>[
+            RestaurantTitle(),
+            Container(
+              height: 300,
+              margin: EdgeInsets.only(top:16, bottom: 16),
+              child: TimeSlot()
+          ),
+            Container(
 
-      bottomNavigationBar: BottomAppBar(
-
-        child: Container(height: 30.0,),
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        elevation: 4.0,
-        icon: const Icon(Icons.add),
-        label: const Text('Add your queue'),
-        onPressed: () async {
-          final ConfirmAction action = await _asyncConfirmDialog(context);
-          print("Confirm Action $action");
-        },
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+              child: FloatingActionButton.extended(
+                elevation: 4.0,
+                icon: const Icon(Icons.add),
+                label: const Text('Add your queue'),
+                onPressed: () async {
+                  final ConfirmAction action = await _asyncConfirmDialog(context);
+                  print("Confirm Action $action");
+                },
+            )),
+            SizedBox(height: 32)
+          ],
+    ),
+        ]
     );
   }
 

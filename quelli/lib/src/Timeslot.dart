@@ -9,19 +9,19 @@ class TimeSlot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final List<String> entries = <String>['X', 'B', 'C'];
+    final List<String> entries = <String>['X', 'B', 'C','D','E'];
     final List<int> colorCodes = <int>[600, 500, 100];
     return ListView.separated(
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.only(left:16.0, right:16.0, bottom:16.0),
       itemCount: entries.length,
       itemBuilder: (BuildContext context, int index) {
         return Container(
           height: 50,
-          margin: EdgeInsets.only(bottom:16.0),
+          margin: EdgeInsets.only(top:16.0),
           child:CheckboxListTile(
-            title: const Text('Animate Slowly'),
+            title: const Text('Time Slot na ja'),
             value: timeDilation != 1.0,
             onChanged: (bool value) {
 
