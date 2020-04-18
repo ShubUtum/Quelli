@@ -54,16 +54,36 @@ class _StoreInfoState extends State<StoreCard> {
             children: <Widget>[
               Text(store.name, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               SizedBox(height: 4),
-              Text(store.location, style: TextStyle(color: Colors.green)),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget> [
-                  SizedBox(height: 25),
-                  Text('Queue ' + store.queue, style: TextStyle(fontSize: 16, color: Colors.black87), textAlign: TextAlign.right),
+              RichText(
+                text: TextSpan(
+                  children: [
+                    WidgetSpan(
+                      child: Icon(Icons.location_on, size: 20, color: Colors.grey),
+                    ),
+                    TextSpan(text: store.location, style: TextStyle(color: Colors.green))
+                  ]
+                ),
+              ),
+              Row(
+                children: <Widget>[
+                 Column(
+                    children: <Widget> [
+                      SizedBox(height: 25),
+                      Text('Queue today ' , style: TextStyle(fontSize: 12, color: Colors.black54), textAlign: TextAlign.right),
+                      Text(store.queue, style: TextStyle(fontSize: 16, color: Colors.black87), textAlign: TextAlign.right)
+                    ]
+                  ),
+                  SizedBox(width: 50),
+                  Column(
+                      children: <Widget> [
+                        SizedBox(height: 25),
+                        Text('Queue ahead ' , style: TextStyle(fontSize: 12, color: Colors.black54), textAlign: TextAlign.right),
+                        Text(store.queue, style: TextStyle(fontSize: 16, color: Colors.black87), textAlign: TextAlign.right)
+                      ]
+                  )
                 ],
               )
-
-              ],
+              ]
           ),
           ],
         ),
