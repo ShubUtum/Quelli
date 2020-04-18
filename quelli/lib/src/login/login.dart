@@ -64,6 +64,15 @@ class _LoginPageState extends State<LoginPage> {
       onPressed: () {},
     );
 
+    final registerLabel = FlatButton(
+      child: Text(
+        'Register Account',
+        style: TextStyle( fontSize: 16.5, color: Colors.black54),
+      ),
+      onPressed: () {},
+    );
+
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -78,7 +87,10 @@ class _LoginPageState extends State<LoginPage> {
             password,
             SizedBox(height: 24.0),
             loginButton,
-            forgotLabel
+            registerLabel,
+            SizedBox(height: 8.0),
+            forgotLabel,
+
           ],
         ),
       ),
