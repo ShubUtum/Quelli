@@ -19,6 +19,10 @@ class _StoreInfoState extends State<StoreCard> {
   Widget storeTemplate(store){
     return Card(
         margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+        child: new InkWell(
+          onTap: () { //To be route to queuing page
+          print("tapped");
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
@@ -37,6 +41,7 @@ class _StoreInfoState extends State<StoreCard> {
             ),
           ],
         )
+      )
     );
   }
 
