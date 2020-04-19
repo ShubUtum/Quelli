@@ -18,7 +18,7 @@ Queuing to enter a place can create a close contact between people. By making a 
 ## Challenges we ran into
 * It's the first time we used Flutter and Mongo database
 * Figuring out what API from the backend would be needed
-* Timezone difference between member
+* Timezone difference between member (Thailand & Germany)
 
 ## Accomplishments that we're proud of
 * We figured out how to use  Flutter and Mongo database
