@@ -9,17 +9,13 @@ class RestaurantTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    // TODO: implement build
     return Column(
-          children: <Widget>[
-            SizedBox(height: 16),
-            Text(this.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28)),
-            SizedBox(height: 5),
-            Text(this.location, style: TextStyle(color: Colors.grey, fontSize: 14)),
+      children: <Widget>[
+        SizedBox(height: 16),
+        Text(this.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28)),
+        SizedBox(height: 5),
+        Text(this.location, style: TextStyle(color: Colors.grey, fontSize: 14)),
       ],
-   );
-
-
+    );
   }
 }
