@@ -14,7 +14,7 @@ class RestaurantTitle extends StatelessWidget {
         SizedBox(height: 16),
         Text(this.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28)),
         SizedBox(height: 5),
-        Text(this.location, style: TextStyle(color: Colors.grey, fontSize: 14)),
+        Text((double.parse(this.location)/1000).toStringAsFixed(2) + ' km', style: TextStyle(color: Colors.grey, fontSize: 14)),
       ],
     );
   }

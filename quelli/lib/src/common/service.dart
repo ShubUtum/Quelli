@@ -7,9 +7,6 @@ import 'package:quelli/src/list/store.dart';
 import 'package:quelli/src/search/searchObj.dart';
 
 class HttpService {
-
-  //final String url = 'https://localhost:8081/api/v1/';
-  final String url = 'https://5e9a5afbbc561b0016af3cca.mockapi.io/api/v1/';
   final String apiurl = 'http://35.234.115.144:3000/';
 
   Future<List<Store>> storeList(position) async {
@@ -50,6 +47,20 @@ class HttpService {
     }
   }
 
+  Future<String> joinqueue(storeid, userid, timeslot) async {
+    final response =
+    await http.put(apiurl + 'store/queue/', headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    }, body: jsonEncode(<String, String>{'store_id': storeid, 'user_id': userid, 'time_slot': timeslot})
+    );
+
+    if (response.statusCode == 200) {
+      return QueId.fromJson(json.decode(response.body)).id;
+    } else {
+      throw Exception('Failed to load album');
+    }
+  }
+
   Future<dynamic> getQRCode(userid, storeid, queueid) async {
     var queryParameters = {
       'user_id': userid,
@@ -65,26 +76,16 @@ class HttpService {
       throw Exception('Failed to load album');
     }
   }
+}
 
-//  Future<Time> TimeSlot() async {
-//    final response =
-//    await http.post(url + 'albums/1');
-//
-//    if (response.statusCode == 200) {
-//      return Store.fromJson(json.decode(response.body));
-//    } else {
-//      throw Exception('Failed to load album');
-//    }
-//  }
-//
-//  Future<class> something() async {
-//    final response =
-//    await http.post(url + 'albums/1');
-//
-//    if (response.statusCode == 200) {
-//      return Store.fromJson(json.decode(response.body));
-//    } else {
-//      throw Exception('Failed to load album');
-//    }
-//  }
+class QueId {
+  String id;
+
+  QueId({this.id});
+
+  factory QueId.fromJson(Map<String, dynamic> json) {
+    return QueId(
+      id: json['queue_id'],
+    );
+  }
 }

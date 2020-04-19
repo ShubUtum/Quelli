@@ -173,7 +173,7 @@ class _StoreInfoState extends State<StoreCard> {
         margin: EdgeInsets.all(10),
         child: new InkWell(
             onTap: () { //To be route to queuing page
-              createAlertDialog(context, '001', '5e99e8bc86c608d010863b27', '2b1a9a89-f76e-4aeb-ba2e-42043e6de302');
+              createAlertDialog(context, '001', slot.storeid, slot.queue);
             },
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),

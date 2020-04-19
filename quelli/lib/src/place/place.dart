@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:quelli/src/common/service.dart';
 import 'package:quelli/src/list/store.dart';
 import 'package:quelli/src/place/Timeslot.dart';
 import 'package:quelli/src/place/restaurantTitle.dart';
 import 'package:quelli/src/place/slot.dart';
+import 'package:intl/intl.dart';
 
 enum ConfirmAction { ACCEPT, CANCEL }
 
@@ -20,6 +22,7 @@ class Place extends StatefulWidget {
 
 class PlaceState extends State<Place> {
   Store store;
+  final HttpService httpService = HttpService();
   final SlotCallback callback;
   final List<String> entries = <String>['14:00', '14:30', '15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:30','20:00'];
   List<String> timeSlot = new List<String>();
@@ -41,7 +44,12 @@ class PlaceState extends State<Place> {
                  onPressed: () async {
                    final ConfirmAction action = await _asyncConfirmDialog(context);
                    if (action == ConfirmAction.ACCEPT){
-                     this.callback(Slot.create(this.store.name, this.timeSlot[0], null));
+                     var date = new DateFormat('yyymmdd').format(new DateTime.now()).toString();
+                     var time = this.timeSlot[0].split(':');
+                     var timesection = int.parse(time[0]) * 2;
+                     if(time[1] != '00'){timesection += 1;}
+                     var id = await httpService.joinqueue(this.store.storeid, '001', date + timesection.toString());
+                     this.callback(Slot.create(this.store.name, this.timeSlot[0], this.store.storeid, id, timesection.toString()));
                      Navigator.pop(context);
                    }
                  },
