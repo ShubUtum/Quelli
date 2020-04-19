@@ -143,7 +143,6 @@ class _StoreInfoState extends State<StoreCard> {
   void addQueue(slot){
     collections.insert(0, queueTemplate(slot));
     this.callback();
-    setState(() {});
   }
 
   createAlertDialog(BuildContext context, userid, storeid, queueid){
