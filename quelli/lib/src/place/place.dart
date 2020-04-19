@@ -31,7 +31,7 @@ class PlaceState extends State<Place> {
     return Container(
       child: Column(
         children: <Widget>[
-           RestaurantTitle(this.store.name, this.store.location),
+           RestaurantTitle(this.store.name, this.store.location.toString()),
            Expanded(
              child: TimeSlot(entries, (time) => onSelectSlot(time))
            ),
