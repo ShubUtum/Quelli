@@ -132,6 +132,7 @@ class _StoreInfoState extends State<StoreCard> {
     print(slot.name);
 
     return Center( child:Card(
+        color: Colors.orange[500],
         margin: EdgeInsets.all(10),
         elevation: 4,
         child: new InkWell(
@@ -142,21 +143,17 @@ class _StoreInfoState extends State<StoreCard> {
               padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 12.0),
               child:
                   Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        const Text("Your queue is at"),
-                        Text(slot.time, style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, )),
+                        Align( alignment: Alignment.center, child: const Text("Your queue is at", style: TextStyle(fontFamily: "helvetica neue"))),
+                        Align(
+                            alignment: Alignment.center,
+                            child: Text(slot.time, style: TextStyle(fontSize: 55, fontWeight: FontWeight.bold, fontFamily: "helvetica neue"))),
                         SizedBox(height: 4),
-                        RichText(
-                          text: TextSpan(
-                              children: [
-                                WidgetSpan(
-                                  child: Icon(Icons.location_on, size: 24, color: Colors.grey),
-                                ),
-                                TextSpan(text: slot.name, style: TextStyle(color: Colors.green, fontSize: 12))
-                              ]
-                          ),
+                        Align(
+                          alignment: Alignment.center,
+                          child:  Text(slot.name, style: TextStyle (fontSize: 12, fontFamily: "helvetica neue"))
                         ),
                       ]
                   ),

@@ -17,11 +17,13 @@ class ListState extends State<StoreList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       floatingActionButtonLocation:
       FloatingActionButtonLocation.centerDocked,
       floatingActionButton:  FloatingActionButton.extended(
         icon: this.haveQueue? Icon(Icons.scanner): Icon(Icons.search),
         label: Text(this.haveQueue? "Check in" : "Search places"), onPressed: () {
+          this.haveQueue? print("QR SCANNER HERE") : //QR HERE
           showSearch(
             context: context,
             delegate: CustomSearchDelegate(),
@@ -40,6 +42,7 @@ class ListState extends State<StoreList> {
         ),
       ),
       appBar: AppBar(
+        //leading: new Container(),
         title: Text(widget.title),
         centerTitle: true,
 
