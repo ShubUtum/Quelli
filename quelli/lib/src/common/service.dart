@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:quelli/src/list/store.dart';
+import 'package:quelli/src/search/searchObj.dart';
 
 class HttpService {
 
@@ -21,6 +22,17 @@ class HttpService {
       return stores;
     } else {
       throw Exception('Something wrong');
+    }
+  }
+
+  Future<StoreObj> findStoreInSearch(String keyword) async {
+    final response =
+        await http.get("http://35.234.115.144:3000/store/?text=" + keyword + "&limit=10");
+
+    if (response.statusCode == 200) {
+      return StoreObj.fromJson(json.decode(response.body));
+    } else {
+      throw Exception('Failed to load album');
     }
   }
 

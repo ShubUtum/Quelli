@@ -21,7 +21,7 @@ class Place extends StatefulWidget {
 class PlaceState extends State<Place> {
   Store store;
   final SlotCallback callback;
-  final List<String> entries = <String>['X', 'B', 'C','D','E'];
+  final List<String> entries = <String>['14:00', '14:30', '15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:30','20:00'];
   List<String> timeSlot = new List<String>();
   PlaceState(this.store, this.callback);
 

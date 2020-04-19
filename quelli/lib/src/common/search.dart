@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:quelli/src/common/service.dart';
+import 'package:quelli/src/search/searchObj.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
 
   final List<String> _history = [];
 
   List<String> filterName = new List();
+
+  CustomSearchDelegate(){
+    //this.filterName = ['hallo'];
+  }
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -33,7 +39,12 @@ class CustomSearchDelegate extends SearchDelegate {
 
   @override
   Widget buildResults(BuildContext context) {
-      return Text(query);
+    //HttpService service = HttpService();
+    //String output;
+//    service.findStoreInSearch(query).then( (result) => {
+//      output = result.stores.length > 0? result.stores[0] : "Not found"
+//    });
+
   }
 
   @override

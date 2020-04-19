@@ -42,7 +42,7 @@ class ListState extends State<StoreList> {
         ),
       ),
       appBar: AppBar(
-        //leading: new Container(),
+        leading: new Container(),
         title: Text(widget.title),
         centerTitle: true,
 

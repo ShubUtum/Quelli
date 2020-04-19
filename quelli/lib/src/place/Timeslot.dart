@@ -41,7 +41,7 @@ class TimeSlotState extends State<TimeSlot> {
       itemCount: this.timeslots.length,
       itemBuilder: (BuildContext context, int index) {
         return Container(
-            height: 40,
+            height: 30,
             margin: EdgeInsets.only(top:16.0, bottom: 16.0),
             child:CheckboxListTile(
               title: Text(this.timeslots[index]),
@@ -52,7 +52,7 @@ class TimeSlotState extends State<TimeSlot> {
                 this.callback(this.report);
                 setState(() {});
               },
-              subtitle: const Text('10 slots left'),
+
             )
         );
       },

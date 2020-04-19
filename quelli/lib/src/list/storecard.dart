@@ -131,10 +131,9 @@ class _StoreInfoState extends State<StoreCard> {
     print(slot.time);
     print(slot.name);
 
-    return Center( child:Card(
-        color: Colors.orange[500],
+    return Center( child:Container(
+        //color: Colors.blue[700],
         margin: EdgeInsets.all(10),
-        elevation: 4,
         child: new InkWell(
             onTap: () { //To be route to queuing page
               print("tapped");
@@ -146,14 +145,14 @@ class _StoreInfoState extends State<StoreCard> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        Align( alignment: Alignment.center, child: const Text("Your queue is at", style: TextStyle(fontFamily: "helvetica neue"))),
+                        Align( alignment: Alignment.centerLeft, child: const Text("Your next queue is at", style: TextStyle(fontFamily: "helvetica neue"))),
                         Align(
-                            alignment: Alignment.center,
+                            alignment: Alignment.centerLeft,
                             child: Text(slot.time, style: TextStyle(fontSize: 55, fontWeight: FontWeight.bold, fontFamily: "helvetica neue"))),
-                        SizedBox(height: 4),
+                        SizedBox(height: 1),
                         Align(
-                          alignment: Alignment.center,
-                          child:  Text(slot.name, style: TextStyle (fontSize: 12, fontFamily: "helvetica neue"))
+                          alignment: Alignment.centerLeft,
+                          child:  Text(slot.name, style: TextStyle (fontSize: 16, fontFamily: "helvetica neue"))
                         ),
                       ]
                   ),
